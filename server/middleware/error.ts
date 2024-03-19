@@ -7,13 +7,13 @@ export const ErrorMiddleware = (err: any, req: Request, res: Response, next: Nex
 
   // wrong mongodb id error
   if (err.name == "CastError") {
-    const message = `Resource not foung. Invalid ${err.path}`;
+    const message = `Resource not found. Invalid ${err.path}`;
     err = new ErrorHandler(message, 400);
   }
 
   // Duplicate key Error
   if (err.code == 11000) {
-    const message = `Duplciate ${Object.keys(err.keyValue)} entered`;
+    const message = `Duplicate ${Object.keys(err.keyValue)} entered`;
     err = new ErrorHandler(message, 400);
   }
   // wrong jwt error

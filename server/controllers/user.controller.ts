@@ -41,7 +41,7 @@ export const registrationUser = catchAsyncError(async (req: Request, res: Respon
     try {
       await sendMail({
         email: user.email,
-        subject: "Active your account!",
+        subject: "BrainNest account activation",
         template: "activation-mail.ejs",
         data,
       });
