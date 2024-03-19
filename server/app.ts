@@ -25,7 +25,7 @@ app.use("/api/v1",userRouter);
 //testing api
 app.get("/test", (req: Request, res: Response, next: NextFunction) => {
   res.status(200).json({
-    sucess: true,
+    success: true,
     massage: "API is working",
   });
 });
