@@ -1,7 +1,7 @@
 require('dotenv').config();
 import userModel, { IUser } from "../models/user.model"
 import ErrorHandler from "../utils/ErrorHandler"
-import { CatchAsyncError } from "../middleware/catchAsyncErrors"
+import { catchAsyncError } from "../middleware/catchAsyncErrors"
 import { Request, Response, NextFunction } from "express"
 import jwt, { Secret } from "jsonwebtoken"
 import ejs from "ejs";
@@ -16,7 +16,7 @@ interface IRegistrationBody {
     avatar?: string;
 }
 
-export const registrationUser = CatchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+export const registrationUser = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { name, email, password } = req.body;
 
@@ -36,7 +36,7 @@ export const registrationUser = CatchAsyncError(async (req: Request, res: Respon
         const activationCode = activationToken.activationCode;
 
         const data = { user: { name: user.name }, activationCode };
-        const html = await ejs.renderFile(path.join(__dirname, "../mails/activation-mails.ejs"), data)
+        const html = await ejs.renderFile(path.join(__dirname, "../mails/activation-mails.ejs"),)
 
         try {
             await sendMail({
@@ -84,7 +84,7 @@ interface IActivationRequest {
     activation_code: string,
 }
 
-export const activateUser = CatchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+export const activateUser = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { activation_token, activation_code } = req.body as IActivationRequest;
 
