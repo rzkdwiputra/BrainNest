@@ -15,6 +15,6 @@ userRouter.get("/refresh", updateAccesstoken);
 
 userRouter.get("/me", isAuthenticated, getUserInfo);
 
-userRouter.post("/socialAuth", socialAuth);
+userRouter.post("/social-Auth", socialAuth);
 
 export default userRouter;
